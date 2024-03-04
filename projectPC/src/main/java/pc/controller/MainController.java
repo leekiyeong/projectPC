@@ -27,11 +27,22 @@ public class MainController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping("main.do")
-	public ModelAndView main() throws Exception {
-		
-		ModelAndView mv = new ModelAndView("main");
-		/* System.out.println(mv); */
-		return mv;
+	@GetMapping("/main.do")
+	public ModelAndView main(HttpSession session) {
+	    ModelAndView mv = new ModelAndView("main");
+	    
+	    // 세션에서 사용자 아이디 가져오기
+	    String userid = (String) session.getAttribute("userid");
+	    
+	    System.out.println("MainController" + userid);
+	    
+	    // 사용자 아이디가 세션에 존재하는지 확인
+	    if (userid != null) {
+	        // 세션에 사용자 아이디가 있을 경우 메인 페이지로 이동
+	        mv.addObject("userid", userid); // 메인 페이지로 사용자 아이디 전달
+	    }
+	    System.out.println("MainControllerMV" + mv);
+	    return mv;
 	}
+
 }

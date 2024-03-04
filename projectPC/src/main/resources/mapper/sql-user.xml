@@ -25,46 +25,14 @@
 		]]>
 	</insert>
 	
-	<!-- <select id="login">
+	<select id="login" parameterType="java.util.Map" resultType="UserVo">
 		<![CDATA[
-			SELECT
-				USERID,
-				USERNAME,
-				NICKNAME,
-				INSTA,
-				AUTH,
-				EMAIL,
-				PHONE,
-				RANKS
-			FROM
-				USERINFO
-			WHERE
-				USERID = #{userid} AND
-				PWD = #{pwd} AND
-				DELETE_YN='N'
+			 SELECT ID AS userid, PASSWORD AS password FROM USERINFO WHERE ID = #{userid} AND PASSWORD = #{password}
 		]]>
 	</select>
 	
-	<select id="sessionLogin">
-		<![CDATA[
-			SELECT
-				USERID,
-				PWD,
-				USERNAME,
-				NICKNAME,
-				INSTA,
-				AUTH,
-				EMAIL,
-				PHONE,
-				RANKS
-			FROM
-				USERINFO
-			WHERE
-				USERID = #{userid} AND
-				DELETE_YN='N'
-		]]>
-	</select>
 	
+	<!--
 	<update id="updateUser">
 		<![CDATA[
 			UPDATE

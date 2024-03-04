@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 <link href="css/main.css" rel="stylesheet">
 <title>pc관리 프로그램</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -80,15 +82,44 @@ $(document).ready(function() {
 	                alert("회원가입 성공: " + data);
 	                location="/main.do";
 	            } else {
-	           	 alert("회원가입 실패 ㅠㅠ");
+	           	 alert("회원가입 실패");
 	            } 
 	        },
 	        error: function(error) {
 	            // 오류 발생 시 처리
-	            alert('회원가입 실패: ' + error.responseText);
+	            alert('회원가입 에러발생: ' + error.responseText);
 	        }
 	    });
 	});
+});
+
+//로그인 양식 제출 시 처리
+//AJAX 요청 보내기 (jQuery 사용)
+$(document).ready(function() {
+   
+	$("#loginButton").click(function() {
+    	
+    	var data = $("#loginForm").serialize();
+        
+        $.ajax({
+            url: 'userLogin.do',
+            type: "POST",
+            data: data,
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            dataType: 'text',
+            success: function(data) {
+                if (data) {
+                    alert("로그인 성공");
+                    window.location.href = "/main.do"; // 로그인 성공 시 메인 페이지로 이동
+                } else {
+                    alert("로그인 실패");
+                }
+            },
+            error: function(error) {
+                alert('로그인 에러발생: ' + error.responseText);
+            }
+        });
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -105,9 +136,11 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 	<body>
 	<div id="header">
-		<span style="font-size: 30px;">★</span> 오른쪽 메뉴에서 구매품목을 선택해주세요. <span
-			style="font-size: 30px;">★</span>
+	    <span style="font-size: 30px;">★</span> 
+	    오른쪽 메뉴에서 구매품목을 선택해주세요. 
+	    <span style="font-size: 30px;">★ 사용자 아이디: ${userid}</span>
 	</div>
+
 	
 	<div class="container">
 	    <div class="grid-container">
@@ -133,12 +166,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			<span class="closeLoginModal">&times;</span>
 			<!-- 로그인 모달 내용을 추가하세요 -->
 			<h2>로그인</h2>
-			<form id="loginForm" action="/userLogin" method="post">
-				<label for="userid">사용자 아이디</label> <input type="text"
-					id="userid name="userid" required><br> <label
-					for="password">비밀번호</label> <input type="password" id="password"
-					name="password" required><br> <input type="submit"
-					value="로그인">
+			<form id="loginForm">
+				<label for="userid">사용자 아이디</label> 
+				<input type="text" id="userid" name="userid" required><br> 
+				<label for="password">비밀번호</label> 
+				<input type="password" id="password" name="password" required><br> 
+				<button type="button" id="loginButton">로그인</button>
 			</form>
 		</div>
 	</div>

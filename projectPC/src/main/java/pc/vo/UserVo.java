@@ -12,6 +12,8 @@ public class UserVo {
 	private int rmtime;
 	private String userable_YN;
 	private String using_YN;
+	private String userid;
+	private String password;
 	/*private String userid;
 	private String pwd;
 	private String username;
