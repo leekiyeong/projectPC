@@ -122,26 +122,101 @@ $(document).ready(function() {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const gridContainer = document.querySelector('.grid-container');
+ // 시간 충전
+$(document).ready(function() {
+	$(function() {
+		$("#chargeButton").click(function() {
+		    $(".chargeModal").css("display", "block");
+		});
+	});
+});
+ 
+$(document).ready(function() {
+	$(function() {
+		$(".chargeModalClose").click(function() {
+		    $(".chargeModal").css("display", "none");
+		});
+	});
+});
+//각 시간 충전 버튼 클릭 이벤트 처리
+$(document).ready(function() {
+    $("#charge1Hour").click(function() {
+        sendChargeRequest(1);
+    });
 
-    // 그리드 아이템 생성
-    for (let i = 1; i <= 60; i++) {
-        const gridItem = document.createElement('div');
-        gridItem.classList.add('grid-item');
-        gridItem.textContent = i;
-        gridContainer.appendChild(gridItem);
+    $("#charge2Hours").click(function() {
+        sendChargeRequest(2);
+    });
+
+    $("#charge5Hours").click(function() {
+        sendChargeRequest(5);
+    });
+
+    $("#charge12Hours").click(function() {
+        sendChargeRequest(12);
+    });
+
+    function sendChargeRequest(hours) {
+        // 세션 아이디 가져오기
+        var session_id = '<%= session.getAttribute("userid") %>';
+
+        var data = {
+            session_id: session_id,
+            hours: hours
+        };
+
+        $.ajax({
+            url: 'chargeUpdate.do',
+            type: "POST",
+            data: data,
+            success: function(str) {
+                alert("시간추가 성공" + str); // 성공 또는 실패 메시지를 표시
+            },
+            error: function(error) {
+                alert('에러 발생: ' + error.responseText); // 오류 발생 시 알림 표시
+            }
+        });
     }
 });
+
+
+ // 그리드 아이템 생성
+$(document).ready(function() {
+    $('.grid-container').each(function() {
+        for (let i = 1; i <= 60; i++) {
+            const gridItem = $('<div class="grid-item">' + i + '</div>');
+            $(this).append(gridItem);
+            
+            gridItem.on('click', function() {
+                if (confirm('사용하시겠습니까?')) {
+                    const userid = '<%= session.getAttribute("userid") %>';
+                    $(this).text(userid);
+                }
+            });
+        }
+    });
+});
+
 </script>
 	<body>
 	<div id="header">
-	    <span style="font-size: 30px;">★</span> 
-	    오른쪽 메뉴에서 구매품목을 선택해주세요. 
-	    <span style="font-size: 30px;">★ 사용자 아이디: ${userid}</span>
+	    <c:choose>
+		    <c:when test="${userid != null}">
+		        <span style="font-size: 30px;">★</span> 
+		        	오른쪽 메뉴에서 구매품목을 선택해주세요. 
+		        <span style="font-size: 30px;">★사용자 아이디: ${userid}</span>
+		        <button type="button" id="chargeButton">
+		            시간충전
+		        </button>
+		    </c:when>
+			    <c:otherwise>
+			         <span style="font-size: 30px;">★</span> 
+			      		오른쪽 메뉴에서 구매품목을 선택해주세요. 
+			        <span style="font-size: 30px;">★
+			    </c:otherwise>
+		</c:choose>
 	</div>
 
-	
 	<div class="container">
 	    <div class="grid-container">
 	        <!-- 그리드 아이템 -->
@@ -199,6 +274,21 @@ document.addEventListener('DOMContentLoaded', function() {
 				<button type="button" id="signupButton">회원가입</button>
 			</form>
 		</div>
+	</div>
+	
+	<div id="chargeModal" class="chargeModal">
+	  <div class="chargeModal-content">
+	    <span class="chargeModalClose">&times;</span>
+	    <h2>시간 충전</h2>
+	    <p>1시간 - 1000원</p>
+	    <p>2시간 - 2000원</p>
+	    <p>5시간 - 5000원</p>
+	    <p>12시간 - 10000원</p>
+	    <button id="charge1Hour">1시간 충전</button>
+	    <button id="charge2Hours">2시간 충전</button>
+	    <button id="charge5Hours">5시간 충전</button>
+	    <button id="charge12Hours">12시간 충전</button>
+	  </div>
 	</div>
 	
 </body>

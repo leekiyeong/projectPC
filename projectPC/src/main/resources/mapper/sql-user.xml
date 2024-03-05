@@ -31,25 +31,19 @@
 		]]>
 	</select>
 	
+	<update id="chargeUpdate" parameterType="java.util.Map">
+	    <![CDATA[
+	        UPDATE
+	            USERINFO 
+	        SET
+	            RMTIME = RMTIME + #{hours}
+	        WHERE
+	            ID = #{session_id}
+	    ]]>
+	</update>
+
 	
 	<!--
-	<update id="updateUser">
-		<![CDATA[
-			UPDATE
-				USERINFO 
-			SET
-				PWD=#{changePwd},
-				USERNAME=#{username},
-				NICKNAME=#{nickname},
-				INSTA=NULL,
-				EMAIL=#{email},
-				PHONE=#{phone}
-			WHERE
-				USERID=#{userid} AND
-				DELETE_YN='N'
-		]]>
-	</update>
-	
 	<update id="deleteUser">
 		<![CDATA[
 			UPDATE

@@ -202,7 +202,7 @@ body {
     box-sizing: border-box;
 }
 
-#loginForm input[type="submit"] {
+#loginForm button {
     background-color: #4CAF50;
     color: white;
     padding: 10px 15px;
@@ -213,7 +213,7 @@ body {
     transition: background-color 0.3s;
 }
 
-#loginForm input[type="submit"]:hover {
+#loginForm button:hover {
     background-color: #45a049;
 }
 
@@ -221,6 +221,56 @@ body {
 .modal-LoginContent h2 {
     text-align: center;
     margin-bottom: 20px;
+}
+
+#chargeButton {
+	background-color: #4CAF50; /* 초록색 배경색 */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.chargeModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  padding-top: 60px;
+}
+
+.chargeModal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%;
+}
+
+.chargeModalClose {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.chargeModalClose:hover,
+.chargeModalClose:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {

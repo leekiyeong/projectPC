@@ -35,6 +35,20 @@ public class UserServiceImpl implements UserService {
 		System.out.println(userMapper.login(userid, password));
 		return userMapper.login(userid, password);
 	}
+
+	@Override
+	public boolean chargeUpdate(String session_id, String hours) throws Exception{
+		
+		boolean result = false;
+		int mapperResult = userMapper.chargeUpdate(session_id, hours);
+		if(mapperResult == 1) {
+			result = true;
+		} else {
+			result = false;
+		}
+		
+		return result;
+	}
 	
 }
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -51,6 +52,23 @@ public class UserController {
 
 	    return mv;
 	}
-
+	
+	@PostMapping("/chargeUpdate.do")
+	@ResponseBody
+    public boolean chargeUpdate(@RequestParam String session_id,
+    			@RequestParam String hours) throws Exception{
+       
+		// 여기서 데이터베이스 작업을 수행하고 결과를 반환합니다.
+       System.out.println(session_id);
+       System.out.println(hours);
+        
+       boolean data = false;
+       
+       data = userService.chargeUpdate(session_id, hours);
+       
+        // 세션 아이디와 시간을 이용하여 데이터베이스 업데이트 수행
+        // 예시로 성공적으로 충전된 경우를 반환
+        return data;
+    }
 
 }
