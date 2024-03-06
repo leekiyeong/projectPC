@@ -5,7 +5,7 @@ body {
 
 #header {
     max-width: 100%;
-    height: 60px;
+    height: 70px;
     border: 1px solid #000;
     background: #100101;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -18,24 +18,42 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 600px;
+    height: 800px;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(15, 100px); /* 각 그리드 아이템의 너비를 자동으로 설정 */
+    grid-template-columns: repeat(10, 200px); /* 각 그리드 아이템의 너비를 설정 */
     grid-gap: 15px; /* 그리드 간격 설정 */
+    margin-top: 70px;
 }
 
-.grid-container > div {
+/* 그리드 아이템 스타일 */
+.grid-item {
+    position: relative; /* 내부 요소를 포함하는 기본적인 상대 위치 지정 */
     background-color: #ccc;
-    height: 80px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px;
     font-weight: bold;
-    width: 60px; /* 그리드 아이템의 너비 설정 */
+    width: 150px; /* 그리드 아이템의 너비 설정 */
+}
+
+/* 숫자 텍스트 스타일 */
+.number-text {
+    position: absolute; /* 그리드 아이템 내부에 절대 위치 지정 */
+    top: 5px; /* 상단 여백 설정 */
+    left: 5px; /* 좌측 여백 설정 */
+}
+
+/* 세션 아이디 텍스트 스타일 */
+.session-id {
+    position: absolute; /* 그리드 아이템 내부에 절대 위치 지정 */
+    top: 50%; /* 세션 아이디 텍스트를 수직 중앙에 정렬하기 위한 위치 설정 */
+    left: 50%; /* 세션 아이디 텍스트를 수평 중앙에 정렬하기 위한 위치 설정 */
+    transform: translate(-50%, -50%); /* 세션 아이디 텍스트를 수평 및 수직 중앙으로 이동 */
 }
 
 .grid-bottomcontainer {
@@ -50,8 +68,8 @@ body {
     border-radius: 50%;
     width: 100px;
     height: 100px;
-    display: inline-flex; /* 수정: flex 컨테이너로 설정 */
-    flex-direction: column; /* 수정: 세로로 배치되도록 설정 */
+    display: inline-flex; /* flex 컨테이너로 설정 */
+    flex-direction: column; /* 세로로 배치되도록 설정 */
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -233,6 +251,7 @@ body {
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
+    margin-left: 10px;
     cursor: pointer;
     border-radius: 10px;
 }
@@ -271,6 +290,10 @@ body {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+#charge1Hour,#charge2Hour,#charge5Hour,#charge12Hour{
+	color: block;
 }
 
 @media screen and (max-width: 600px) {

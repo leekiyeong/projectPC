@@ -11,6 +11,7 @@ public interface UserMapper {
 	int signup(UserVo vo) throws Exception;
 	UserVo login(@Param("userid") String userid, @Param("password") String password) throws Exception;
 	int chargeUpdate(@Param("session_id") String session_id, @Param("hours") String hours) throws Exception;
+	UserVo checkRMtime(@Param("session_id") String session_id) throws Exception;
 	
 }
 

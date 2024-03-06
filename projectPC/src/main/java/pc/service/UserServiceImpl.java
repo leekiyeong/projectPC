@@ -49,6 +49,15 @@ public class UserServiceImpl implements UserService {
 		
 		return result;
 	}
+
+	@Override
+	public UserVo checkRMtime(String session_id) throws Exception {
+		
+		System.out.println("UserServiceImpl" + session_id);
+		System.out.println(userMapper.checkRMtime(session_id));
+		
+		return userMapper.checkRMtime(session_id);
+	}
 	
 }
 

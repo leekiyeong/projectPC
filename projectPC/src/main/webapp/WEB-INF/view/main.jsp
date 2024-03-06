@@ -95,15 +95,11 @@
 	<div id="chargeModal" class="chargeModal">
 	  <div class="chargeModal-content">
 	    <span class="chargeModalClose">&times;</span>
-	    <h2>시간 충전</h2>
-	    <p>1시간 - 1000원</p>
-	    <p>2시간 - 2000원</p>
-	    <p>5시간 - 5000원</p>
-	    <p>12시간 - 10000원</p>
-	    <button id="charge1Hour">1시간 충전</button>
-	    <button id="charge2Hours">2시간 충전</button>
-	    <button id="charge5Hours">5시간 충전</button>
-	    <button id="charge12Hours">12시간 충전</button>
+		    <h2>시간 충전</h2>
+		    <p>1시간 - 1000원 <button id="charge1Hour">1시간 충전</button></p>
+		    <p>2시간 - 2000원 <button id="charge2Hours">2시간 충전</button></p>
+		    <p>5시간 - 5000원 <button id="charge5Hours">5시간 충전</button></p>
+		    <p>12시간 - 10000원 <button id="charge12Hours">12시간 충전</button></p>
 	  </div>
 	</div>
 	

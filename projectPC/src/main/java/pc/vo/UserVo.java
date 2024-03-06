@@ -9,14 +9,16 @@ public class UserVo {
 	private String signupPassword;
 	private String signupName;
 	private String signupPhone;
+	private String userid;
+	private String session_id;
+	private String hours;
+	private String id;
+	private String password;
+	private String name;
+	private String phone;
 	private String rmtime;
 	private String userable_YN;
 	private String using_YN;
-	private String userid;
-	private String password;
-	private String session_id;
-	private String hours;
-	
 	/*private String userid;
 	private String pwd;
 	private String username;

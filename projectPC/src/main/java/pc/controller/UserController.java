@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -70,5 +72,20 @@ public class UserController {
         // 예시로 성공적으로 충전된 경우를 반환
         return data;
     }
-
+	
+	@PostMapping("/checkRMtime.do")
+	@ResponseBody
+    public UserVo checkRMtime(@RequestParam String session_id) throws Exception{
+       
+		System.out.println("UserController시간체크USERID " + session_id);
+		 
+	    UserVo vo = userService.checkRMtime(session_id);
+	    
+	    System.out.println("UserControllerUSERID " + session_id);
+	    System.out.println("UserControllerVO " + vo);
+	    
+	    System.out.println("UserController MVTest" + vo);
+	    
+	    return vo;
+	}
 }

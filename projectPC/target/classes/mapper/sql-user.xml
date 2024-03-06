@@ -41,7 +41,12 @@
 	            ID = #{session_id}
 	    ]]>
 	</update>
-
+	
+	<select id="checkRMtime" parameterType="java.util.Map" resultType="UserVo">
+		<![CDATA[
+			SELECT * FROM USERINFO WHERE ID = #{session_id}
+		]]>
+	</select>
 	
 	<!--
 	<update id="deleteUser">
